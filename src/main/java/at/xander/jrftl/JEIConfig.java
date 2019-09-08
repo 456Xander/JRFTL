@@ -1,20 +1,28 @@
 package at.xander.jrftl;
 
-import mezz.jei.api.IModPlugin;
-import mezz.jei.api.IModRegistry;
-import mezz.jei.api.JEIPlugin;
-import mezz.jei.api.ingredients.IIngredientBlacklist;
-import net.minecraft.item.ItemStack;
+import com.google.common.collect.ImmutableList;
 
-@JEIPlugin
+import mezz.jei.api.IModPlugin;
+import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.runtime.IJeiRuntime;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+
+@JeiPlugin
 public class JEIConfig implements IModPlugin {
 
 	@Override
-	public void register(IModRegistry registry) {
-		IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
+	public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {
 		if (!JRFTL.instance.isHardMode()) {
-			blacklist.addIngredientToBlacklist(new ItemStack(JRFTL.instance.PreparedFlesh));
+			jeiRuntime.getIngredientManager().removeIngredientsAtRuntime(VanillaTypes.ITEM,
+					ImmutableList.of(new ItemStack(JRFTL.instance.PreparedFlesh)));
 		}
+	}
+
+	@Override
+	public ResourceLocation getPluginUid() {
+		return new ResourceLocation(JRFTL.MODID, "jei_plugin");
 	}
 
 }

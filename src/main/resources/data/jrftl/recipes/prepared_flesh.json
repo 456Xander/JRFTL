@@ -1,7 +1,7 @@
 {
 	"conditions": [
 		{
-			"type": "jrftlHardMode"
+			"type": "jrftl:hard_mode"
 		}
 	],
 	"type": "minecraft:crafting_shaped",

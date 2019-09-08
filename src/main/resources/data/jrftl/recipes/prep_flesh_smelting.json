@@ -1,0 +1,13 @@
+{
+	"conditions": [
+		{
+			"type": "jrftl:hard_mode"
+		}
+	],
+	"type": "minecraft:smelting",
+	"ingredient": {
+		"item": "jrftl:prepared_flesh"
+	},
+	"result": "minecraft:leather",
+	"experience": 0.2
+}
