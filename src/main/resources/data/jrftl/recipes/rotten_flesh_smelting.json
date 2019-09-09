@@ -1,7 +1,10 @@
 {
 	"conditions": [
 		{
-			"type": "jrftl:easy_mode"
+			"type": "forge:not",
+			"value": {
+				"type": "jrftl:hard_mode"
+			}
 		}
 	],
 	"type": "minecraft:smelting",

@@ -1,10 +1,22 @@
 package at.xander.jrftl;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import static net.minecraftforge.fml.loading.LogMarkers.FORGEMOD;
 
+import org.apache.logging.log4j.LogManager;
+
+import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+
+@Mod.EventBusSubscriber(modid = JRFTL.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Config {
 	private final ForgeConfigSpec.ConfigValue<Boolean> hardModeConfig;
 	public final ForgeConfigSpec conf;
+
+	public boolean isLoaded() {
+		return conf.isLoaded();
+	}
 
 	public boolean isHardMode() {
 		return hardModeConfig.get();
@@ -18,6 +30,11 @@ public class Config {
 				"The game has to be restarted for this config to take effect").define("enableHardMode", false);
 		builder.pop();
 		conf = builder.build();
+	}
+
+	@SubscribeEvent
+	public static void onLoad(final ModConfig.Loading configEvent) {
+		LogManager.getLogger().debug("Loaded JRFTL config file {}", configEvent.getConfig().getFileName());
 	}
 
 }

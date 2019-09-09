@@ -38,11 +38,13 @@ public class JRFTL {
 	// public static CommonProxy proxy;
 
 	public void init(FMLCommonSetupEvent e) {
-		CraftingHelper.register(new ResourceLocation(MODID, "hard_mode"), new ConditionHardMode());
-		CraftingHelper.register(new ResourceLocation(MODID, "easy_mode"), new ConditionEasyMode());
+		CraftingHelper.register(ConditionHardMode.Serializer.instance);
 	}
 
 	public boolean isHardMode() {
+		if (!config.isLoaded()) {
+			System.out.println("Warning config not loaded");
+		}
 		return config.isHardMode();
 	}
 }

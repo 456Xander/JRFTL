@@ -1,16 +1,31 @@
 package at.xander.jrftl;
 
-import java.util.function.BooleanSupplier;
-
 import com.google.gson.JsonObject;
 
-import net.minecraftforge.common.crafting.IConditionSerializer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.crafting.conditions.ICondition;
+import net.minecraftforge.common.crafting.conditions.IConditionSerializer;
 
-public class ConditionEasyMode implements IConditionSerializer {
+
+public class ConditionEasyMode implements IConditionSerializer<ICondition>{
 
 	@Override
-	public BooleanSupplier parse(JsonObject json) {
-		return () -> !JRFTL.instance.isHardMode();
+	public void write(JsonObject json, ICondition value) {
+		// TODO Auto-generated method stub
+		
 	}
+
+	@Override
+	public ICondition read(JsonObject json) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResourceLocation getID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
