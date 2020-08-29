@@ -1,0 +1,5 @@
+image: "gradle:jre14"
+
+compile:
+    script:
+        - ./gradlew build

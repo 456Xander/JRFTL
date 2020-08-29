@@ -6,10 +6,14 @@
 # The name of the mod loader type to load - for regular FML @Mod mods it should be javafml
 modLoader="javafml" #mandatory
 # A version range to match for said mod loader - for regular FML @Mod it will be the forge version
-loaderVersion="[29,)" #mandatory (24 is current forge version)
+loaderVersion="[32,)" #mandatory (24 is current forge version)
 # A URL to refer people to when problems occur with this mod
 #issueTrackerURL="http://my.issue.tracker/" #optional
 # A list of mods - how many allowed here is determined by the individual mod loader
+
+# License
+license="MIT"
+
 [[mods]] #mandatory
 # The modid of the mod
 modId="jrftl" #mandatory
@@ -38,7 +42,7 @@ Creates the possibility to convert Rotten Flesh to leather
     # Does this dependency have to exist - if not, ordering below must be specified
     mandatory=true #mandatory
     # The version range of the dependency
-    versionRange="[29,)" #mandatory
+    versionRange="[32,)" #mandatory
     # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
     ordering="NONE"
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
@@ -47,6 +51,6 @@ Creates the possibility to convert Rotten Flesh to leather
 [[dependencies.jrftl]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.15,1.15.2]"
+    versionRange="[1.16,1.16.2]"
     ordering="NONE"
     side="BOTH"
