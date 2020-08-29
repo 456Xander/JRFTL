@@ -1,5 +1,10 @@
 image: "gradle:jre14"
 
+cache:
+    key: cache-key
+    paths:
+        - /home/gradle/.gradle/caches
+
 compile:
     script:
         - ./gradlew build
