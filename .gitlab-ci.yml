@@ -10,8 +10,7 @@ compile:
         - ./gradlew build
         - pwd
         - ls -la /home/gradle
-        - ls /home/gradle/.gradle
-        - ls /home/gradle/.cache
+        - ls /home/gradle/.gradle/caches
     artifacts:
         untracked: false
         expire_in: 30 days
