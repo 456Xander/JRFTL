@@ -8,3 +8,8 @@ cache:
 compile:
     script:
         - ./gradlew build
+    artifacts:
+        untracked: false
+        expire_in: 30 days
+        paths:
+            - build/libs
