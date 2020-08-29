@@ -8,10 +8,10 @@ cache:
 compile:
     script:
         - ./gradlew build
-        - ls /
         - pwd
-        - ls
-        - ls /home
+        - ls -la /home/gradle
+        - ls /home/gradle/.gradle
+        - ls /home/gradle/.cache
     artifacts:
         untracked: false
         expire_in: 30 days
