@@ -3,10 +3,11 @@ image: "gradle:jre14"
 cache:
     key: cache-key
     paths:
-        - /home/gradle/.gradle/caches/
+        - .gradle_home/caches
 
 compile:
     script:
+        - export GRADLE_USER_HOME=./.gradle_home
         - ./gradlew build
     artifacts:
         untracked: false
