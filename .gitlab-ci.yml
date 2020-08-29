@@ -8,6 +8,10 @@ cache:
 compile:
     script:
         - ./gradlew build
+        - ls /
+        - pwd
+        - ls
+        - ls /home
     artifacts:
         untracked: false
         expire_in: 30 days
