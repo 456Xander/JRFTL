@@ -1,7 +1,6 @@
 package at.xander.jrftl;
 
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -32,10 +31,6 @@ public class JRFTL {
 	private void clientInit(FMLClientSetupEvent e) {
 
 	}
-
-	// @SidedProxy(clientSide = "at.xander.jrftl.proxy.ClientProxy", serverSide =
-	// "at.xander.jrftl.proxy.CommonProxy")
-	// public static CommonProxy proxy;
 
 	public void init(FMLCommonSetupEvent e) {
 		CraftingHelper.register(ConditionHardMode.Serializer.instance);
