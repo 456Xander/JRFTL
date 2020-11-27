@@ -4,11 +4,11 @@
 			"type": "jrftl:hard_mode"
 		}
 	],
-	"type": "minecraft:smelting",
+	"type": "minecraft:smoking",
 	"ingredient": {
 		"item": "jrftl:prepared_flesh"
 	},
 	"result": "minecraft:leather",
 	"experience": 0.2,
-	"cookingtime": 200
+	"cookingtime": 100
 }
