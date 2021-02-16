@@ -51,6 +51,6 @@ Creates the possibility to convert Rotten Flesh to leather
 [[dependencies.jrftl]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16,1.16.4]"
+    versionRange="[1.16,1.17)"
     ordering="NONE"
     side="BOTH"
