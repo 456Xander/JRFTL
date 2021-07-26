@@ -5,7 +5,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
@@ -17,7 +17,7 @@ version = "${jrftl_version}"
 group = 'at.xander' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "JRFTL [${mc_version}]"
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+java.toolchain.languageVersion = JavaLanguageVersion.of(16)
 
 minecraft {
     // The mappings can be changed at any time, and must be in the following format.
@@ -25,7 +25,7 @@ minecraft {
     // stable_#            Stables are built at the discretion of the MCP team.
     // Use non-default mappings at your own risk. they may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
-    mappings channel: 'snapshot', version: "${mapping_snapshot}"
+    mappings channel: 'official', version: "${mc_version}"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
     
     // accessTransformer = file('build/resources/main/META-INF/accesstransformer.cfg')
@@ -37,7 +37,7 @@ minecraft {
             workingDirectory project.file('run')
 
             // Recommended logging data for a userdev environment
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.markers', 'REGISTRIES'
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
@@ -53,7 +53,7 @@ minecraft {
             workingDirectory project.file('run')
 
             // Recommended logging data for a userdev environment
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.markers', 'REGISTRIES'
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
@@ -68,7 +68,7 @@ minecraft {
             workingDirectory project.file('run')
 
             // Recommended logging data for a userdev environment
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.markers', 'REGISTRIES'
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
@@ -85,16 +85,17 @@ minecraft {
 }
 
 repositories {
-  maven {
+  //maven {
     // location of the maven that hosts JEI files
-    name = "Progwml6 maven"
-    url = "https://dvs1.progwml6.com/files/maven/"
-  }
-  maven {
+    // name = "Progwml6 maven"
+    // url = "https://dvs1.progwml6.com/files/maven/"
+  // }
+  // maven {
     // location of a maven mirror for JEI files, as a fallback
-    name = "ModMaven"
-    url = "https://modmaven.k-4u.nl"
-  }
+    // name = "ModMaven"
+    // url = "https://modmaven.k-4u.nl"
+  // }
+  
 }
 
 dependencies {
@@ -122,9 +123,9 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
 	// compile against the JEI API but do not include it at runtime
-	compile fg.deobf("mezz.jei:jei-${jei_mc_version}:${jei_version}:api")
+	// compile fg.deobf("mezz.jei:jei-${jei_mc_version}:${jei_version}:api")
   	// at runtime, use the full JEI jar	
-	runtimeOnly fg.deobf("mezz.jei:jei-${jei_mc_version}:${jei_version}")
+	// runtimeOnly fg.deobf("mezz.jei:jei-${jei_mc_version}:${jei_version}")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
@@ -157,15 +158,15 @@ publishing {
         maven {
             url "file:///${project.projectDir}/mcmodsrepo"
         }
-		maven {
-			// location of the maven that hosts JEI files
-			name = "Progwml6 maven"
-			url = "https://dvs1.progwml6.com/files/maven/"
-		}
-		maven {
-			// location of a maven mirror for JEI files, as a fallback
-			name = "ModMaven"
-			url = "https://modmaven.k-4u.nl"
-		}
+		// maven {
+		// 	// location of the maven that hosts JEI files
+		// 	name = "Progwml6 maven"
+		// 	url = "https://dvs1.progwml6.com/files/maven/"
+		// }
+		// maven {
+		// 	// location of a maven mirror for JEI files, as a fallback
+		// 	name = "ModMaven"
+		// 	url = "https://modmaven.k-4u.nl"
+		// }
     }
 }

@@ -1,5 +1,6 @@
 package at.xander.jrftl;
 
+/*
 import com.google.common.collect.ImmutableList;
 
 import mezz.jei.api.IModPlugin;
@@ -26,3 +27,5 @@ public class JEIConfig implements IModPlugin {
 	}
 
 }
+
+*/

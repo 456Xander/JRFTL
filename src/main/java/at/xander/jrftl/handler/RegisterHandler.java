@@ -1,8 +1,8 @@
 package at.xander.jrftl.handler;
 
 import at.xander.jrftl.JRFTL;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,12 +14,8 @@ public class RegisterHandler {
 
 	@SubscribeEvent
 	public static void onItemRegistry(Register<Item> event) {
-		JRFTL.instance.PreparedFlesh = new Item(new Item.Properties().group(ItemGroup.MISC)).setRegistryName("prepared_flesh");
+		JRFTL.instance.PreparedFlesh = new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)).setRegistryName("prepared_flesh");
 		event.getRegistry().register(JRFTL.instance.PreparedFlesh);
 	}
 
-	@SubscribeEvent
-	public static void registerRenders(ModelRegistryEvent event) {
-
-	}
 }

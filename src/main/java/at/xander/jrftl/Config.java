@@ -1,13 +1,12 @@
 package at.xander.jrftl;
 
-import static net.minecraftforge.fml.loading.LogMarkers.FORGEMOD;
-
 import org.apache.logging.log4j.LogManager;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 
 @Mod.EventBusSubscriber(modid = JRFTL.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Config {
@@ -33,7 +32,7 @@ public class Config {
 	}
 
 	@SubscribeEvent
-	public static void onLoad(final ModConfig.Loading configEvent) {
+	public static void onLoad(final ModConfigEvent configEvent) {
 		LogManager.getLogger().debug("Loaded JRFTL config file {}", configEvent.getConfig().getFileName());
 	}
 
