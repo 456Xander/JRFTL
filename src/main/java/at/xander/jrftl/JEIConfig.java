@@ -1,14 +1,12 @@
 package at.xander.jrftl;
 
-/*
 import com.google.common.collect.ImmutableList;
-
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.runtime.IJeiRuntime;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 
 @JeiPlugin
 public class JEIConfig implements IModPlugin {
@@ -27,5 +25,3 @@ public class JEIConfig implements IModPlugin {
 	}
 
 }
-
-*/
