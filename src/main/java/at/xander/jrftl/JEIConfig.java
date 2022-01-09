@@ -1,7 +1,7 @@
 package at.xander.jrftl;
 
-/*
 import com.google.common.collect.ImmutableList;
+
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
@@ -26,4 +26,3 @@ public class JEIConfig implements IModPlugin {
 	}
 
 }
-*/
