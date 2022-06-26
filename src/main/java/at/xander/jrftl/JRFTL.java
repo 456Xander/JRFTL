@@ -1,5 +1,6 @@
 package at.xander.jrftl;
 
+import at.xander.jrftl.handler.JRFTLItems;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -20,12 +21,16 @@ public class JRFTL {
 
 	private final Config config = new Config();
 
+	public final JRFTLItems items;
+
 	public JRFTL() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		bus.addListener(this::init);
 		bus.addListener(this::clientInit);
 		instance = this;
 		ModLoadingContext.get().registerConfig(Type.COMMON, config.conf);
+		// Register Item Registries at the end
+		items = new JRFTLItems(FMLJavaModLoadingContext.get());
 	}
 
 	private void clientInit(FMLClientSetupEvent e) {
@@ -42,4 +47,5 @@ public class JRFTL {
 		}
 		return config.isHardMode();
 	}
+
 }
