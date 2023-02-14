@@ -1,7 +1,6 @@
 package at.xander.jrftl;
 
 import at.xander.jrftl.handler.JRFTLItems;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -14,8 +13,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(JRFTL.MODID)
 public class JRFTL {
 	public static final String MODID = "jrftl";
-
-	public Item PreparedFlesh;
 
 	public static JRFTL instance;
 

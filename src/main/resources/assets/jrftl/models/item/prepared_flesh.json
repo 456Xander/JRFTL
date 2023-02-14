@@ -1,6 +1,6 @@
 {
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "jrftl:items/prepared_flesh"
+		"layer0": "jrftl:item/prepared_flesh"
 	}
 }
