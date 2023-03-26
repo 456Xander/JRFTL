@@ -12,7 +12,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = "${jrftl_version}"
+version = "${mod_version}"
 group = 'at.xander' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "JRFTL-${mc_version}"
 
