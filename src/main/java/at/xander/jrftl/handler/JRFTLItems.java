@@ -32,7 +32,9 @@ public class JRFTLItems {
 	
 	private void handleCreativeModeTabPopulation(CreativeModeTabEvent.BuildContents event) {
 		if(event.getTab() == CreativeModeTabs.INGREDIENTS) {
-			event.accept(PreparedFlesh.get());
+			if (JRFTL.instance.isHardMode()) {
+				event.accept(PreparedFlesh.get());
+			}
 		}
 	}
 }

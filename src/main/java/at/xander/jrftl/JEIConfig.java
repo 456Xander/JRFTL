@@ -13,8 +13,10 @@ public class JEIConfig implements IModPlugin {
 
 	@Override
 	public void registerRecipes(IRecipeRegistration registration) {
-		registration.getIngredientManager().removeIngredientsAtRuntime(VanillaTypes.ITEM_STACK,
-				ImmutableList.of(JRFTL.instance.items.PreparedFlesh.get().getDefaultInstance()));
+		if (!JRFTL.instance.isHardMode()) {
+			registration.getIngredientManager().removeIngredientsAtRuntime(VanillaTypes.ITEM_STACK,
+					ImmutableList.of(JRFTL.instance.items.PreparedFlesh.get().getDefaultInstance()));
+		}
 	}
 
 	@Override
