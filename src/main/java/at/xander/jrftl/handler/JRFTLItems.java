@@ -5,7 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.event.ModelEvent;
-import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -30,8 +30,8 @@ public class JRFTLItems {
 		event.register(new ResourceLocation(JRFTL.MODID, "prepared_flesh"));
 	}
 	
-	private void handleCreativeModeTabPopulation(CreativeModeTabEvent.BuildContents event) {
-		if(event.getTab() == CreativeModeTabs.INGREDIENTS) {
+	private void handleCreativeModeTabPopulation(BuildCreativeModeTabContentsEvent event) {
+		if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
 			if (JRFTL.instance.isHardMode()) {
 				event.accept(PreparedFlesh.get());
 			}
