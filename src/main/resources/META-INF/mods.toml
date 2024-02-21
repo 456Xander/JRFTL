@@ -47,6 +47,14 @@ Creates the possibility to convert Rotten Flesh to leather
     ordering="NONE"
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
+
+[[dependencies.jrftl]] #optional JEI dependency
+    modId="jei"
+    mandatory=false
+    versionRange="[17,)"
+    ordering="NONE"
+    side="BOTH"
+
 # Here's another dependency
 [[dependencies.jrftl]]
     modId="minecraft"

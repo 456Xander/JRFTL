@@ -1,16 +1,8 @@
-buildscript {
-	repositories {
-		maven { url = 'https://files.minecraftforge.net/maven' }
-		mavenCentral()
-	}
-	dependencies {
-		classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-	}
+plugins {
+    id 'eclipse'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
 }
-apply plugin: 'net.minecraftforge.gradle'
-// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
 
 version = "${mod_version}"
 group = 'at.xander' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -86,9 +78,9 @@ minecraft {
 
 repositories {
 	maven {
-		// location of the maven that hosts JEI files
-		name = "Progwml6 Maven"
-		url = "https://dvs1.progwml6.com/files/maven/"
+    	// location of the maven that hosts JEI files since January 2023
+    	name = "Jared's maven"
+    	url = "https://maven.blamejared.com/"
 	}
 	maven {
 		// location of a maven mirror for JEI files, as a fallback
@@ -123,10 +115,10 @@ dependencies {
 	// http://www.gradle.org/docs/current/userguide/dependency_management.html
 
 	// compile against the JEI API but do not include it at runtime
-	compileOnly fg.deobf("mezz.jei:jei-${jei_mc_version}-common-api:${jei_version}")
-	compileOnly fg.deobf("mezz.jei:jei-${jei_mc_version}-forge-api:${jei_version}")
+	compileOnly(fg.deobf("mezz.jei:jei-${jei_mc_version}-common-api:${jei_version}"))
+	compileOnly(fg.deobf("mezz.jei:jei-${jei_mc_version}-forge-api:${jei_version}"))
 	// at runtime, use the full JEI jar
-	runtimeOnly fg.deobf("mezz.jei:jei-${jei_mc_version}-forge:${jei_version}")
+	// runtimeOnly(fg.deobf("mezz.jei:jei-${jei_mc_version}-forge:${jei_version}"))
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
