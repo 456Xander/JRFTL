@@ -1,0 +1,32 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "forge:condition": {
+        "type": "jrftl:hard_mode"
+      },
+      "type": "minecraft:smoking",
+      "ingredient": {
+        "item": "jrftl:prepared_flesh"
+      },
+      "result": "minecraft:leather",
+      "experience": 0.2,
+      "cookingtime": 100
+    },
+    {
+      "forge:condition": {
+        "type": "forge:not",
+        "value": {
+          "type": "jrftl:hard_mode"
+        }
+      },
+      "type": "minecraft:smoking",
+      "ingredient": {
+        "item": "minecraft:rotten_flesh"
+      },
+      "result": "minecraft:leather",
+      "experience": 0.2,
+      "cookingtime": 100
+    }
+  ]
+}

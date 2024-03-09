@@ -1,0 +1,32 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "forge:condition": {
+        "type": "jrftl:hard_mode"
+      },
+      "type": "minecraft:smelting",
+      "ingredient": {
+        "item": "jrftl:prepared_flesh"
+      },
+      "result": "minecraft:leather",
+      "experience": 0.2,
+      "cookingtime": 200
+    },
+    {
+      "forge:condition": {
+        "type": "forge:not",
+        "value": {
+          "type": "jrftl:hard_mode"
+        }
+      },
+      "type": "minecraft:smelting",
+      "ingredient": {
+        "item": "minecraft:rotten_flesh"
+      },
+      "result": "minecraft:leather",
+      "experience": 0.2,
+      "cookingtime": 200
+    }
+  ]
+}

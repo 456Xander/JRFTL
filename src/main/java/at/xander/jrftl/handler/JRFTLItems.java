@@ -23,14 +23,17 @@ public class JRFTLItems {
 	// Items
 	public final RegistryObject<Item> PreparedFlesh = ITEMS.register("prepared_flesh", () -> new Item(new Item.Properties()));
 	
+	// Conditions
+	public final RegistryObject<Codec<ConditionHardMode>> HardMode = CONDITION_SERIALIZERS.register("hard_mode", () -> ConditionHardMode.CODEC);
+	
 	// Init Function
 
 	public JRFTLItems(FMLJavaModLoadingContext ctx) {
 		ITEMS.register(ctx.getModEventBus());
+		CONDITION_SERIALIZERS.register(ctx.getModEventBus());
 		ctx.getModEventBus().addListener(this::handleCreativeModeTabPopulation);
 		ctx.getModEventBus().addListener(this::handleAdditionalModels);
 
-		CONDITION_SERIALIZERS.register("hard_mode", () -> ConditionHardMode.CODEC);
 	}
 	
 	private void handleAdditionalModels(ModelEvent.RegisterAdditional event) {
