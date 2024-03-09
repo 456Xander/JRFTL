@@ -7,7 +7,7 @@ plugins {
 version = "${mod_version}"
 group = 'at.xander' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 base {
-    archivesName = "mod_id-${mc_version}"
+    archivesName = "${mod_id}-${mc_version}"
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)

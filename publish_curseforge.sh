@@ -1,6 +1,6 @@
 #!/bin/sh
 MODID="247136"
-mod_name="JRFTL"
+mod_name="jrftl"
 
 if [ -z $CURSEFORGE_TOKEN ]
 then

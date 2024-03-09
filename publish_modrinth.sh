@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 MODID="8nIicBYu"
-mod_name="JRFTL"
+mod_name="jrftl"
 
 if [ -z $MODRINTH_TOKEN ]
 then
