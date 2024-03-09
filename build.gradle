@@ -6,75 +6,58 @@ plugins {
 
 version = "${mod_version}"
 group = 'at.xander' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "JRFTL-${mc_version}"
+base {
+    archivesName = "mod_id-${mc_version}"
+}
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 
 minecraft {
-	// The mappings can be changed at any time, and must be in the following format.
-	// snapshot_YYYYMMDD   Snapshot are built nightly.
-	// stable_#            Stables are built at the discretion of the MCP team.
-	// Use non-default mappings at your own risk. they may not always work.
-	// Simply re-run your setup task after changing the mappings to update your workspace.
 	mappings channel: 'official', version: "${mc_version}"
-	// makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 
-	// accessTransformer = file('build/resources/main/META-INF/accesstransformer.cfg')
+    // This property allows configuring Gradle's ProcessResources task(s) to run on IDE output locations before launching the game.
+    // It is REQUIRED to be set to true for this template to function.
+    // See https://docs.gradle.org/current/dsl/org.gradle.language.jvm.tasks.ProcessResources.html
+    copyIdeResources = true
 
-	// Default run configurations.
-	// These can be tweaked, removed, or duplicated as needed.
-	runs {
-		client {
-			workingDirectory project.file('run')
+    runs {
+        // applies to all the run configs below
+        configureEach {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+        }
 
-			// Recommended logging data for a userdev environment
-			property 'forge.logging.markers', 'REGISTRIES'
+        client {
+            // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
+            property 'forge.enabledGameTestNamespaces', mod_id
+        }
 
-			// Recommended logging level for the console
-			property 'forge.logging.console.level', 'debug'
+        server {
+            property 'forge.enabledGameTestNamespaces', mod_id
+            args '--nogui'
+        }
 
-			mods {
-				JRFTL {
-					source sourceSets.main
-				}
-			}
-		}
+        // This run config launches GameTestServer and runs all registered gametests, then exits.
+        // By default, the server will crash when no gametests are provided.
+        // The gametest system is also enabled by default for other run configs under the /test command.
+        gameTestServer {
+            property 'forge.enabledGameTestNamespaces', mod_id
+        }
 
-		server {
-			workingDirectory project.file('run')
+        data {
+            // example of overriding the workingDirectory set in configureEach above
+            workingDirectory project.file('run-data')
 
-			// Recommended logging data for a userdev environment
-			property 'forge.logging.markers', 'REGISTRIES'
-
-			// Recommended logging level for the console
-			property 'forge.logging.console.level', 'debug'
-
-			mods {
-				JRFTL {
-					source sourceSets.main
-				}
-			}
-		}
-		data {
-			workingDirectory project.file('run')
-
-			// Recommended logging data for a userdev environment
-			property 'forge.logging.markers', 'REGISTRIES'
-
-			// Recommended logging level for the console
-			property 'forge.logging.console.level', 'debug'
-
-			args '--mod', 'JRFTL', '--all', '--output', file('src/generated/resources/')
-
-			mods {
-				JRFTL {
-					source sourceSets.main
-				}
-			}
-		}
-	}
+            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+        }
+    }
 }
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
 	maven {
@@ -121,35 +104,51 @@ dependencies {
 	// runtimeOnly(fg.deobf("mezz.jei:jei-${jei_mc_version}-forge:${jei_version}"))
 }
 
-// Example for how to get properties into the manifest for reading by the runtime..
-jar {
-	manifest {
-		attributes([
-			"Specification-Title": "JRFTL",
-			"Specification-Vendor": "456Xander",
-			"Specification-Version": "1.1", // We are version 1 of ourselves
-			"Implementation-Title": project.name,
-			"Implementation-Version": "${version}",
-			"Implementation-Vendor" :"456Xander",
-			"Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-		])
-	}
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [
+            mc_version_range: mc_version_range,
+            forge_version_range: forge_version_range,
+            mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
+            mod_authors: mod_authors,
+            jei_version_range: jei_version_range
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
 }
 
-// Example configuration to allow publishing using the maven-publish task
-// we define a custom artifact that is sourced from the reobfJar output task
-// and then declare that to be published
-// Note you'll need to add a repository here
-jar.finalizedBy('reobfJar')
-publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			artifact jar
-		}
-	}
-	repositories {
-		maven {
-			url "file:///${project.projectDir}/mcmodsrepo"
-		}
-	}
+tasks.named('jar', Jar).configure {
+    manifest {
+        attributes([
+            'Specification-Title'     : mod_id,
+            'Specification-Vendor'    : mod_authors,
+            'Specification-Version'   : mod_version, // We are version 1 of ourselves
+            'Implementation-Title'    : project.name,
+            'Implementation-Version'  : project.jar.archiveVersion,
+            'Implementation-Vendor'   : mod_authors
+        ])
+    }
+
+    // This is the preferred method to reobfuscate your jar file
+    finalizedBy 'reobfJar'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+
+eclipse {
+    synchronizationTasks 'genEclipseRuns'
+}
+
+// Merge the resources and classes into the same directory. 
+// This is done because java expects modules to be in a single directory.
+// And if we have it in multiple we have to do performance intensive hacks like having the UnionFileSystem
+// This will eventually be migrated to ForgeGradle so modders don't need to manually do it. But that is later.
+sourceSets.each {
+    def dir = layout.buildDirectory.dir("sourcesSets/$it.name")
+    it.output.resourcesDir = dir
+    it.java.destinationDirectory = dir
 }

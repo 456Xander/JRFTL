@@ -6,21 +6,21 @@
 # The name of the mod loader type to load - for regular FML @Mod mods it should be javafml
 modLoader="javafml" #mandatory
 # A version range to match for said mod loader - for regular FML @Mod it will be the forge version
-loaderVersion="[46,)" #mandatory (38 is forge version for 1.18)
+loaderVersion="${forge_version_range}" #mandatory (38 is forge version for 1.18)
 # A URL to refer people to when problems occur with this mod
 #issueTrackerURL="http://my.issue.tracker/" #optional
 # A list of mods - how many allowed here is determined by the individual mod loader
 
 # License
-license="MIT"
+license="${mod_license}"
 
 [[mods]] #mandatory
 # The modid of the mod
-modId="jrftl" #mandatory
+modId="${mod_id}" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
-version="${file.jarVersion}" #mandatory
+version="${mod_version}" #mandatory
  # A display name for the mod
-displayName="JRFTL" #mandatory
+displayName="${mod_name}" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification <here>
 #updateJSONURL="http://myurl.me/" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
@@ -30,7 +30,7 @@ displayName="JRFTL" #mandatory
 # A text field displayed in the mod UI
 #credits="Thanks for this example mod goes to Java" #optional
 # A text field displayed in the mod UI
-#authors="Love, Cheese and small house plants" #optional
+authors="${mod_authors}"
 # The description text for the mod (multi line!) (#mandatory)
 description='''
 Creates the possibility to convert Rotten Flesh to leather
@@ -42,7 +42,7 @@ Creates the possibility to convert Rotten Flesh to leather
     # Does this dependency have to exist - if not, ordering below must be specified
     mandatory=true #mandatory
     # The version range of the dependency
-    versionRange="[46,)" #mandatory
+    versionRange="${forge_version_range}" #mandatory
     # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
     ordering="NONE"
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
@@ -51,7 +51,7 @@ Creates the possibility to convert Rotten Flesh to leather
 [[dependencies.jrftl]] #optional JEI dependency
     modId="jei"
     mandatory=false
-    versionRange="[17,)"
+    versionRange="${jei_version_range}"
     ordering="NONE"
     side="BOTH"
 
@@ -59,6 +59,6 @@ Creates the possibility to convert Rotten Flesh to leather
 [[dependencies.jrftl]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.20,1.21)"
+    versionRange="${mc_version_range}"
     ordering="NONE"
     side="BOTH"
